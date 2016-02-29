@@ -72,6 +72,7 @@ var app = {
         var _cb =  function(result){
               alert("data: " + JSON.stringify(result))
         }
+
         var dataBlock = document.getElementById("data_block");
         var readButton = document.getElementById("read_data");
         readButton.addEventListener('click', function() { 
@@ -84,20 +85,24 @@ var app = {
               //}
               //)
           //}else{
-            ACR.readData(parseInt(dataBlock.value,10),passwordInput.value,read_success,read_failure);
+            ACR.readData(parseInt(dataBlock.value,10), passwordInput.value, read_success, read_failure);
           //}
         });
+
         var displayButton = document.getElementById("display");
         var displayInput = document.getElementById("input_display");
         var clearButton = document.getElementById("clear");
+
         displayButton.addEventListener('click', function() { 
           ACR.display(displayInput.value,{bold: true , font:1,x:0},function(r){},function(r){});
           ACR.display(displayInput.value,{bold: false, font:3,x:2, y:4},function(r){},function(r){});
           ACR.display(displayInput.value,{bold: false, font:3,x:3, y:6},function(r){},function(r){});
         });
+
         clearButton.addEventListener('click', function() { 
           ACR.clearLCD(function(r){},function(r){});
         });
+
         var isReadyButton = document.getElementById("is_ready");
         var writeButton = document.getElementById("write_data");
         var writeInput = document.getElementById("write_data_input");
@@ -105,18 +110,32 @@ var app = {
         var oldPasswordInput = document.getElementById("old_password_input");
         var initNtagButton = document.getElementById("init_ntag");
         var getVersion = document.getElementById("get_version");
+        var getReceivedData = document.getElementById("get_received_data");
+        var getFirmwareVersion = document.getElementById("get_firmware_version");
+
         isReadyButton.addEventListener('click', function(){
           ACR.isReady(
             function(){alert('is Ready')},
             function(){alert('is not Ready')}
             );
         });
+
         getVersion.addEventListener('click', function(){
-          ACR.getVersion(_cb,_cb);
+          ACR.getVersion(_cb, _cb);
         });
+
+        getFirmwareVersion.addEventListener('click', function(){
+          ACR.getFirmwareVersion(_cb, _cb);
+        });
+
+        getReceivedData.addEventListener('click', function(){
+          ACR.getReceivedData(_cb, _cb);
+        });
+
         initNtagButton.addEventListener('click', function(){
-          ACR.initNTAG213(oldPasswordInput.value, passwordInput.value,_cb,_cb);
+          ACR.initNTAG213(oldPasswordInput.value, passwordInput.value, _cb, _cb);
         });
+
         //var keyA = document.getElementById("key_a");
         //var keyB = document.getElementById("key_b");
         writeButton.addEventListener('click', function() { 
@@ -136,7 +155,7 @@ var app = {
                 //alert('write authenticate fail');
             //});
           //}else{
-            ACR.writeData(parseInt(dataBlock.value, 10),writeInput.value,passwordInput.value,write_success,write_failure);
+            ACR.writeData(parseInt(dataBlock.value, 10), writeInput.value, passwordInput.value, write_success, write_failure);
           //}
         });
         var disableButtons = function(){
@@ -153,7 +172,7 @@ var app = {
         }
         var success = function(result) {
             alert("ATR: " + JSON.stringify(result));
-            ACR.readData(4,passwordInput.value,read_uid_success, read_uid_failure);
+            ACR.readData(4, passwordInput.value, read_uid_success, read_uid_failure);
             enableButtons();
         };
 
