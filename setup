@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cordova plugin remove com.frankgreen
+cordova plugin add ../ACR-NFC-Reader-PhoneGap-Plugin/
+cordova build
