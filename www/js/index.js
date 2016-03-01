@@ -75,7 +75,7 @@ var app = {
 
         var dataBlock = document.getElementById("data_block");
         var readButton = document.getElementById("read_data");
-        readButton.addEventListener('click', function() { 
+        readButton.addEventListener('click', function() {
           //if(keyA.value.length > 0){
             //ACR.authenticateWithKeyA(4,keyA.value, function(){
                 //ACR.readData(BLOCK,read_success,read_failure);
@@ -93,13 +93,13 @@ var app = {
         var displayInput = document.getElementById("input_display");
         var clearButton = document.getElementById("clear");
 
-        displayButton.addEventListener('click', function() { 
+        displayButton.addEventListener('click', function() {
           ACR.display(displayInput.value,{bold: true , font:1,x:0},function(r){},function(r){});
           ACR.display(displayInput.value,{bold: false, font:3,x:2, y:4},function(r){},function(r){});
           ACR.display(displayInput.value,{bold: false, font:3,x:3, y:6},function(r){},function(r){});
         });
 
-        clearButton.addEventListener('click', function() { 
+        clearButton.addEventListener('click', function() {
           ACR.clearLCD(function(r){},function(r){});
         });
 
@@ -112,6 +112,7 @@ var app = {
         var getVersion = document.getElementById("get_version");
         var getReceivedData = document.getElementById("get_received_data");
         var getFirmwareVersion = document.getElementById("get_firmware_version");
+        var getLedStatus = document.getElementById("get_led_status");
 
         isReadyButton.addEventListener('click', function(){
           ACR.isReady(
@@ -136,9 +137,13 @@ var app = {
           ACR.initNTAG213(oldPasswordInput.value, passwordInput.value, _cb, _cb);
         });
 
+        getLedStatus.addEventListener('click', function() {
+          ACR.getLedStatus(_cb, _cb);
+        });
+
         //var keyA = document.getElementById("key_a");
         //var keyB = document.getElementById("key_b");
-        writeButton.addEventListener('click', function() { 
+        writeButton.addEventListener('click', function() {
           //if(keyA.value.length > 0 || keyB.value.length > 0){
             //if(keyA.value.length == 0){
                 //alert('please input KeyA');
