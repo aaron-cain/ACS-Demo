@@ -1,6 +1,6 @@
-### 在ACR plugin 中添加一个新的指令,步骤如下:
+## 在ACR plugin 中添加一个新的指令,步骤如下:
 
-## 添加一个获取指示灯状态的指令
+### 添加一个获取指示灯状态的指令
 
 1 在ACRNFCReaderPhoneGapPlugin.java文件中添加如下代码:
 
@@ -110,7 +110,7 @@ ACR.getLedStatus = function(success, failure) {
 ```
 
 
-## 注意,每次新添加一个java类时，得在plugin.xml文件中申明
+### 注意,每次新添加一个java类时，得在plugin.xml文件中申明
 
 ```xml
   <source-file src="src/android/com/frankgreen/apdu/command/GetLedStatus.java" target-dir="src/com/frankgreen/apdu/command" />
@@ -120,7 +120,7 @@ ACR.getLedStatus = function(success, failure) {
 ```
 
 
-## 在Demo中调用plugin中的方法
+### 在Demo中调用plugin中的方法
 
 １ 首先在www/index.html中增加一个button
 
