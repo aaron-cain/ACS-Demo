@@ -2,7 +2,7 @@
 
 ## 添加一个获取指示灯状态的指令
 
-1.  在ACRNFCReaderPhoneGapPlugin.java文件中添加如下代码:
+1 在ACRNFCReaderPhoneGapPlugin.java文件中添加如下代码:
 
 ```java
     private static final String GET_LED_STATUS = "getLedStatus";
@@ -30,7 +30,8 @@
 
 ```
 
-2. 在NFCReader.java 中添加如下代码:
+
+2  在NFCReader.java 中添加如下代码:
 
 ```java
 
@@ -41,7 +42,7 @@
 
 ```
 
-3. 在com.frankgreen.task下创建GetLedStatusTask.java文件
+3  在com.frankgreen.task下创建GetLedStatusTask.java文件
    除了需要导入的类外,别忘记导入GetLedStatus这个类
 
 ```java
@@ -73,7 +74,7 @@ public class GetLedStatusTask extends AsyncTask<BaseParams, Void, Boolean> {
 
 ```
 
-4.　在com.frankgreen.apdu.command下创建GetLedStatus.java文件, 省略的部分参照其它类的写法
+4　在com.frankgreen.apdu.command下创建GetLedStatus.java文件, 省略的部分参照其它类的写法
 
 ```java
 
@@ -100,7 +101,7 @@ public class GetLedStatus extends Base<BaseParams> {
 
 ```
 
-5. 在www/ACR-NFC-Reader-PhoneGap-Plugin.js中添加如下代码:
+5 在www/ACR-NFC-Reader-PhoneGap-Plugin.js中添加如下代码:
 
 ```js
 ACR.getLedStatus = function(success, failure) {
@@ -111,13 +112,13 @@ ACR.getLedStatus = function(success, failure) {
 
 ## 在Demo中调用plugin中的方法
 
-１．首先在www/index.html中增加一个button
+１ 首先在www/index.html中增加一个button
 
 ```html
   <button disable="disable" id="get_led_status">Get LED Status</button>
 ```
 
-2. 在www/js/index.js中给button增加点击事件
+2  在www/js/index.js中给button增加点击事件
 
 ```js
 
