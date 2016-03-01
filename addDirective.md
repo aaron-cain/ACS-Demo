@@ -110,6 +110,16 @@ ACR.getLedStatus = function(success, failure) {
 ```
 
 
+## 注意,每次新添加一个java类时，得在plugin.xml文件中申明
+
+```xml
+  <source-file src="src/android/com/frankgreen/apdu/command/GetLedStatus.java" target-dir="src/com/frankgreen/apdu/command" />
+
+  <source-file src="src/android/com/frankgreen/task/GetLedStatusTask.java" target-dir="src/com/frankgreen/task" />
+
+```
+
+
 ## 在Demo中调用plugin中的方法
 
 １ 首先在www/index.html中增加一个button
