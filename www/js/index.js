@@ -190,7 +190,6 @@ var app = {
         }
         console.log("Calling plugin");
         ACR.start();
-        ACR.test(_cb, _cb)
         ACR.addTagListener(success, failure);
         ACR.onReady = function (reader) {
           pluginElement.innerHTML = "ready " + reader;
