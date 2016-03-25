@@ -114,7 +114,7 @@ var app = {
         var getReceivedData = document.getElementById("get_received_data");
         var getFirmwareVersion = document.getElementById("get_firmware_version");
         var getLedStatus = document.getElementById("get_led_status");
-				var connectReader = document.getElementById("connectReader"):
+				var connectReader = document.getElementById("connectReader");
         var getBatteryLevel = document.getElementById("get_battery_level");
         var disconnect = document.getElementById("disconnect");
 
