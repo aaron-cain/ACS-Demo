@@ -146,7 +146,7 @@ var app = {
         });
 
 				connectReader.addEventListener('click', function() {
-		      ACR.connectReader(_cb, _cb);
+		      ACR.connectReader(function(){}, function(){});
 			 	})
         getBatteryLevel.addEventListener('click', function() {
           ACR.getBatteryLevel(_cb, _cb);
