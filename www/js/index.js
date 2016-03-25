@@ -41,6 +41,7 @@ var app = {
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
         var pluginElement = parentElement.querySelector('.plugin');
+        var batteryElement = parentElement.querySelector('.battery');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
@@ -114,6 +115,8 @@ var app = {
         var getFirmwareVersion = document.getElementById("get_firmware_version");
         var getLedStatus = document.getElementById("get_led_status");
 				var connectReader = document.getElementById("connectReader"):
+        var getBatteryLevel = document.getElementById("get_battery_level");
+        var disconnect = document.getElementById("disconnect");
 
         isReadyButton.addEventListener('click', function(){
           ACR.isReady(
@@ -145,6 +148,13 @@ var app = {
 				connectReader.addEventListener('click', function() {
 		      ACR.connectReader(_cb, _cb);
 			 	})
+        getBatteryLevel.addEventListener('click', function() {
+          ACR.getBatteryLevel(_cb, _cb);
+        });
+
+        disconnect.addEventListener('click', function() {
+          ACR.disconnect(_cb, _cb);
+        });
 
         //var keyA = document.getElementById("key_a");
         //var keyB = document.getElementById("key_b");
@@ -182,7 +192,7 @@ var app = {
         }
         var success = function(result) {
             alert("ATR: " + JSON.stringify(result));
-            ACR.readData(4, passwordInput.value, read_uid_success, read_uid_failure);
+            //ACR.readData(4, passwordInput.value, read_uid_success, read_uid_failure);
             enableButtons();
         };
 
@@ -192,19 +202,25 @@ var app = {
 
         ACR.onCardAbsent = function() {
             disableButtons();
-        }
+        };
         console.log("Calling plugin");
         ACR.start();
         ACR.addTagListener(success, failure);
         ACR.onReady = function (reader) {
           pluginElement.innerHTML = "ready " + reader;
-        }
+        };
         ACR.onAttach = function (device) {
           pluginElement.innerHTML = "attched " + device;
-        }
+        };
         ACR.onDetach = function (device) {
           pluginElement.innerHTML = "detached " + device;
-        }
+        };
+        ACR.onBatteryLevelChange = function (level) {
+          batteryElement.innerHTML = "battery level " + level;
+        };
+        ACR.onBatteryLevelResult = function (level) {
+          alert("Current Battery Level:" + JSON.stringify(level));
+        };
         console.log("Called plugin");
         console.log('Received Event: ' + id);
     }
