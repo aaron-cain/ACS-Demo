@@ -97,6 +97,9 @@ h1 {
 .event.plugin {
     background-color:#333333;
 }
+.event.battery {
+    background-color:#333333;
+}
 
 
 @keyframes fade {
