@@ -113,6 +113,7 @@ var app = {
         var getReceivedData = document.getElementById("get_received_data");
         var getFirmwareVersion = document.getElementById("get_firmware_version");
         var getLedStatus = document.getElementById("get_led_status");
+				var connectReader = document.getElementById("connectReader"):
 
         isReadyButton.addEventListener('click', function(){
           ACR.isReady(
@@ -140,6 +141,10 @@ var app = {
         getLedStatus.addEventListener('click', function() {
           ACR.getLedStatus(_cb, _cb);
         });
+
+				connectReader.addEventListener('click', function() {
+		      ACR.connectReader(_cb, _cb);
+			 	})
 
         //var keyA = document.getElementById("key_a");
         //var keyB = document.getElementById("key_b");
