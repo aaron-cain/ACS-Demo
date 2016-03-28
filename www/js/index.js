@@ -116,7 +116,7 @@ var app = {
         var getLedStatus = document.getElementById("get_led_status");
 				var connectReader = document.getElementById("connectReader");
         var getBatteryLevel = document.getElementById("get_battery_level");
-        var disconnect = document.getElementById("disconnect");
+        var disconnectReader = document.getElementById("disconnectReader");
 
         isReadyButton.addEventListener('click', function(){
           ACR.isReady(
@@ -146,14 +146,14 @@ var app = {
         });
 
 				connectReader.addEventListener('click', function() {
-		      ACR.connectReader(function(){}, function(){});
+		      ACR.connectReader(function(result){}, function(result){});
 			 	})
         getBatteryLevel.addEventListener('click', function() {
           ACR.getBatteryLevel(_cb, _cb);
         });
 
-        disconnect.addEventListener('click', function() {
-          ACR.disconnect(_cb, _cb);
+        disconnectReader.addEventListener('click', function() {
+          ACR.disconnectReader(_cb, _cb);
         });
 
         //var keyA = document.getElementById("key_a");
