@@ -77,17 +77,7 @@ var app = {
         var dataBlock = document.getElementById("data_block");
         var readButton = document.getElementById("read_data");
         readButton.addEventListener('click', function() {
-          //if(keyA.value.length > 0){
-            //ACR.authenticateWithKeyA(4,keyA.value, function(){
-                //ACR.readData(BLOCK,read_success,read_failure);
-              //}, function(){
-                //alert('authenticate fail');
-                //return;
-              //}
-              //)
-          //}else{
             ACR.readData(parseInt(dataBlock.value,10), passwordInput.value, read_success, read_failure);
-          //}
         });
 
         var displayButton = document.getElementById("display");
@@ -117,6 +107,8 @@ var app = {
 				var connectReader = document.getElementById("connectReader");
         var getBatteryLevel = document.getElementById("get_battery_level");
         var disconnectReader = document.getElementById("disconnectReader");
+        var startScan = document.getElementById("startScan");
+        var stopScan = document.getElementById("stopScan");
 
         isReadyButton.addEventListener('click', function(){
           ACR.isReady(
@@ -146,8 +138,9 @@ var app = {
         });
 
 				connectReader.addEventListener('click', function() {
-		      ACR.connectReader(function(result){}, function(result){});
+		      ACR.connectReader("68:C9:0B:0D:8A:70", _cb, _cb);
 			 	})
+
         getBatteryLevel.addEventListener('click', function() {
           ACR.getBatteryLevel(_cb, _cb);
         });
@@ -156,43 +149,36 @@ var app = {
           ACR.disconnectReader(_cb, _cb);
         });
 
-        //var keyA = document.getElementById("key_a");
-        //var keyB = document.getElementById("key_b");
-        writeButton.addEventListener('click', function() {
-          //if(keyA.value.length > 0 || keyB.value.length > 0){
-            //if(keyA.value.length == 0){
-                //alert('please input KeyA');
-                //return;
-            //}
-            //if(keyB.value.length == 0){
-                //alert('please input KeyB');
-                //return;
-            //}
-            ////ACR.authenticateWithKeyB(keyB.value, function(){},function(){});
-            //ACR.writeAuthenticate(BLOCK,keyA.value,keyB.value, function(){
-              //ACR.writeData(BLOCK,writeInput.value,write_success,write_failure);
-            //}, function(){
-                //alert('write authenticate fail');
-            //});
-          //}else{
-            ACR.writeData(parseInt(dataBlock.value, 10), writeInput.value, passwordInput.value, write_success, write_failure);
-          //}
+        startScan.addEventListener('click', function() {
+          ACR.startScan(_cb, _cb);
         });
+
+        stopScan.addEventListener('click', function() {
+          ACR.stopScan();
+        });
+
+        writeButton.addEventListener('click', function() {
+            ACR.writeData(parseInt(dataBlock.value, 10), writeInput.value, passwordInput.value, write_success, write_failure);
+        });
+
         var disableButtons = function(){
-          readButton.disabled = true;
-          writeButton.disabled = true;
-          getVersion.disabled = true;
-          initNtagButton.disabled = true;
+          //readButton.disabled = true;
+          //writeButton.disabled = true;
+          //getVersion.disabled = true;
+          //initNtagButton.disabled = true;
         }
+
         var enableButtons = function(){
-          readButton.disabled = false;
-          writeButton.disabled = false;
-          getVersion.disabled = false;
-          initNtagButton.disabled = false;
+          //readButton.disabled = false;
+          //writeButton.disabled = false;
+          //getVersion.disabled = false;
+          //initNtagButton.disabled = false;
         }
+
         var success = function(result) {
-            alert("ATR: " + JSON.stringify(result));
+            //alert("ATR: " + JSON.stringify(result))
             //ACR.readData(4, passwordInput.value, read_uid_success, read_uid_failure);
+            ACR.readData(4, passwordInput.value, read_success, read_failure);
             enableButtons();
         };
 
@@ -221,6 +207,9 @@ var app = {
         ACR.onBatteryLevelResult = function (level) {
           alert("Current Battery Level:" + JSON.stringify(level));
         };
+        ACR.onScan = function(device) {
+          console.log(JSON.stringify(device));
+        }
         console.log("Called plugin");
         console.log('Received Event: ' + id);
     }
